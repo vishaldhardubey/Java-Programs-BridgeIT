@@ -1,0 +1,16 @@
+[
+	{
+		"personName": "Vishal Dubey",
+		"zip": 225001,
+		"city": "Barabanki",
+		"mobileNumber": 9873321437,
+		"state": "UP"
+	},
+	{
+		"personName": "Swethlina Nayak",
+		"zip": 769014,
+		"city": "Rourkela",
+		"mobileNumber": 9110697589,
+		"state": "Odisha"
+	}
+]
