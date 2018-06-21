@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>JDBC</groupId>
+  <artifactId>JDBC</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+<dependency>
+09
+	            <groupId>mysql</groupId>
+10
+	            <artifactId>mysql-connector-java</artifactId>
+11
+	            <version>5.1.41</version>
+12
+	        </dependency>
+13
+	        <dependency>
+14
+	            <groupId>commons-dbcp</groupId>
+15
+	            <artifactId>commons-dbcp</artifactId>
+16
+	            <version>1.4</version>
+17
+	        </dependency>
+  </dependencies>
+</project>

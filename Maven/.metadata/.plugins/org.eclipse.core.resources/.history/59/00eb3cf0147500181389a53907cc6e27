@@ -1,0 +1,87 @@
+package com.bridgelabz;
+
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import org.apache.commons.dbcp.ConnectionFactory;
+import org.apache.commons.dbcp.DriverManagerConnectionFactory;
+import org.apache.commons.dbcp.PoolableConnectionFactory;
+import org.apache.commons.dbcp.PoolingDataSource;
+import org.apache.commons.pool.impl.GenericObjectPool;
+
+public class ConnectionPool {
+
+	private static GenericObjectPool gPool = null;
+	Properties properties=new Properties();
+	FileInputStream fileInputStream=new FileInputStream("");
+	
+	
+	public DataSource setUpPool() throws ClassNotFoundException {
+		
+		properties.load(fileInputStream);
+		Class.forName(properties.getProperty("JDBC_DRIVER"));
+
+		gPool = new GenericObjectPool();
+		gPool.setMaxActive(5);
+		ConnectionFactory cf = new DriverManagerConnectionFactory(properties.getProperty("JDBC_DB_URL"), properties.getProperty("JDBC_USER"), properties.getProperty("JDBC_PASS"));
+		PoolableConnectionFactory pcf = new PoolableConnectionFactory(cf, gPool, null, null, false, true);
+
+		return new PoolingDataSource(gPool);
+	}
+
+	public GenericObjectPool getConnectionPool() {
+		return gPool;
+	}
+
+	private void printDbStatus() {
+		System.out.println("Max.: " + getConnectionPool().getMaxActive() + "; Active: "
+				+ getConnectionPool().getNumActive() + "; Idle: " + getConnectionPool().getNumIdle());
+	}
+
+	public static void main(String[] args) {
+    ResultSet rsObj = null;
+    Connection connObj = null;
+    PreparedStatement pstmtObj = null;
+    ConnectionPool cPool=new ConnectionPool();
+
+    try {
+DataSource dataSource=cPool.setUpPool();
+System.out.println("creating New Connection Object For Db Transaction");
+            connObj = dataSource.getConnection();
+            cPool.printDbStatus();
+            pstmtObj = connObj.prepareStatement("SELECT * FROM Student_Info");
+            rsObj = pstmtObj.executeQuery();
+            while (rsObj.next()) {
+                System.out.println("Username: " +
+rsObj.getString("course_name"));
+            }
+            System.out.println("\n=====Releasing Connection Object To Pool=====\n");
+        } catch(Exception sqlException) {
+            sqlException.printStackTrace();
+        } finally {
+            try {
+                // Closing ResultSet Object
+                if(rsObj != null) {
+                    rsObj.close();
+                }
+                // Closing PreparedStatement Object
+                if(pstmtObj != null) {
+                    pstmtObj.close();
+                }
+                // Closing Connection Object
+                if(connObj != null) {
+                    connObj.close();
+                }
+            } catch(Exception sqlException) {
+                sqlException.printStackTrace();
+            }
+        }
+        cPool.printDbStatus();
+    }
+
+}}

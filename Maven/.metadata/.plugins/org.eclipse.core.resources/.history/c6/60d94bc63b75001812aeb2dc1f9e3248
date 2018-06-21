@@ -1,0 +1,48 @@
+package com.bridgelabz;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+
+import com.mysql.jdbc.Statement;
+
+public class BatchProcedureJDBC {
+	
+	static String query1="insert into student_info values(6,'komal','Maurya','komalMaurya@gmail.com',983712391)";
+	static String query2="insert into student_info values(7,'Arjun','Rana','arjunrana@gmail.com',987446237)";
+	static String query3="Update student_info set firstName='Pooja' where regNo=6";
+	
+	public static void main(String[] args) {
+		Connection con=null;
+		Statement statement=null;
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Student_Info?user=root&password=root");
+			statement=(Statement) con.createStatement();
+			statement.addBatch(query1);
+			statement.addBatch(query2);
+			statement.addBatch(query3);
+			statement.executeBatch();
+			
+		System.out.println("Data has been written");
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if(con!=null) {
+					con.close();
+				}
+				if(statement!=null) {
+					statement.close();
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+				}
+			}
+		}
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+<script type="text/javascript">
+function Validation(){
+	var user =document.getElementbyID("fs");
+	var password=document.getElementbyID("fd");
+	if(user==' '){
+		
+	}
+	else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
+	  {
+	    return (true)
+	  }
+	    alert("You have entered an invalid email address!")
+	    return (false)
+	}
+}
+</script>
+</head>
+<body>
+<fieldset title="Change Password">
+<legend> Login Page</legend>
+<form action="login" method="POST">
+	<table>
+	<tr>
+		<td>UserName :</td>
+		<td> <input type ="text" name="user" id="fs"></td>
+		</tr>
+		<tr>
+		<td> Password :</td>	
+		<td> <input type ="text" name="user" id="fd"></td>
+	</tr>
+	</table>
+	<br>
+	<input type="submit" value="Submit"><br> 
+	<a href="changePassword.html">forget password ?</a>
+	</form>
+	</fieldset>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+<!-- <script type="text/javascript">
+function Validation(){
+	var user =document.getElementbyID("fs");
+	var password=document.getElementbyID("fd");
+	if(user==' '){
+		alert("User Name cannot be blank!")
+	}
+	else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
+	  {
+	    return (true)
+	  }
+	    alert("You have entered an invalid email address!")
+	    return (false)
+	}
+}
+</script> -->
+</head>
+<body>
+<!-- <fieldset title="Change Password">
+<legend> Login Page</legend>
+<form action="login" method="post">
+	<table>
+	<tr>
+		<td>Registration ID :</td>
+		<td> <input type ="text" name="user"></td>
+		</tr>
+		<tr>
+		<td> Password :</td>	
+		<td> <input type ="password" name="passKey"></td>
+	</tr>
+	</table>
+	<br>
+	<input type="submit" value="Submit">
+	<input type="submit" value="Sign Up">
+	<br> 
+	<a href="changePassword.html">forget password ?</a>
+	</form>
+	</fieldset> -->
+	<form action="RegistrationController" method="post">
+			<table style="with: 50%">
+				<tr>
+					<td>Full Name</td>
+					<td><input type="text" name="fullname" /></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td><input type="text" name="address" /></td>
+				</tr>
+				</table>
+			<input type="submit" value="register" />
+		</form>
+</body>
+</html>

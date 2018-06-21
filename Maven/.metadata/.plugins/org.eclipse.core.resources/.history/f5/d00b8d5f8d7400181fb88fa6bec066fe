@@ -1,0 +1,145 @@
+package com.studentapp;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class LoginPage extends HttpServlet{
+	public LoginPage() {
+		super();
+		System.out.println(getClass().getName()+ "Created");
+	}
+	private static final long serialVersionUID = 1L;
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		RequestDispatcher dispatcher=null;
+		System.out.println("Vishal Dubey");
+		
+		String registrationId=req.getParameter("user");
+		String password=req.getParameter("passKey");
+		
+		System.out.println("Vishal dhar Dubey");
+		/**
+		 * Connection with the database
+		 */
+		resp.setContentType("text/html");
+		PrintWriter out =resp.getWriter();
+		
+		Connection con=null;
+		ResultSet resultSet=null;
+		PreparedStatement preparedStatement=null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/studentApp_info?user=root&password=root");
+			String query = " select * from "+
+					" student_info si, "+
+					" guardian_info gi, "+
+					" student_otherinfo soi "+
+					" where si.regNo = gi.regNo "+
+					" and si.regNo = soi.regNo "+
+					" and soi.regNo = ? "+
+					" and soi.password = ? ";
+	
+			System.out.println("Query : "+query);
+			
+			preparedStatement = con.prepareStatement(query);
+			preparedStatement.setInt(1, Integer.parseInt(registrationId) );
+			preparedStatement.setString(2, password);
+			resultSet = preparedStatement.executeQuery();
+			
+			
+			//4. Process the Results returned by SQL Queries
+			if(resultSet.next())
+			{
+				//Valid credentials
+				int regnum = resultSet.getInt("regNo");
+				String fNM = resultSet.getString("student_FirstName");
+				String mNM = resultSet.getString("student_MiddleName");
+				String lNM = resultSet.getString("student_LastName");
+				String gfNM = resultSet.getString("gi.gFirst_Name");
+				String gmNM = resultSet.getString("gi.gMiddle_Name");
+				String glNM = resultSet.getString("gi.gLast_Name");
+				String isAdmin = resultSet.getString("soi.isadmin");
+			/*	
+				if(isAdmin.equals("Y"))
+				{
+					String url = "";
+					out.println("<a href=\""+url+"\"> Click Here <a> to View ALL Students Info ...");
+				}
+				out.println("<html> ");
+				out.println("<body> ");
+				out.println("<table>");
+				out.println("<tr bgcolor=\"green\">");
+				out.println("<td>Reg. No.</td>     ");
+				out.println("<td>First Name</td>   ");
+				out.println("<td>Middle Name</td>  ");
+				out.println("<td>Last Name</td>    ");
+				out.println("<td>G First Name</td> ");
+				out.println("<td>G Middle Name</td>");
+				out.println("<td>G Last Name</td>  ");
+				out.println("</tr>");
+				out.println("<tr> ");
+				out.println("<td>"+regnum+"</td>  ");
+				out.println("<td>"+fNM+"</td>");
+				out.println("<td>"+mNM+"</td> ");
+				out.println("<td>"+lNM+"</td>");
+				out.println("<td>"+gfNM+"</td>");
+				out.println("<td>"+gmNM+"</td> ");
+				out.println("<td>"+glNM+"</td>");
+				out.println("</tr>       ");
+				out.println("</table>    ");
+				out.println("</body>     ");
+				out.println("</html>     ");
+				*/
+				
+				out.println(regnum);
+				out.println(fNM);
+				out.println(mNM);
+				out.println(lNM);
+				out.println(gfNM);
+				out.println(gmNM);
+				out.println(glNM);
+			}else{
+				out.print("<font color=\"red\">");
+				out.println("In-Valid User Name / Password");
+				out.print("</font>");
+				out.print("<BR><BR>");
+				dispatcher = req.getRequestDispatcher("loginPage.html");
+				dispatcher.include(req, resp);
+					
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			//5. Close All JDBC Objects
+			try 
+			{
+				if(con!=null){
+					con.close();
+				}
+				if(preparedStatement!=null){
+					preparedStatement.close();
+				}
+				if(resultSet!=null){
+					resultSet.close();
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}//End of outer try-catch block
+		
+	}
+}

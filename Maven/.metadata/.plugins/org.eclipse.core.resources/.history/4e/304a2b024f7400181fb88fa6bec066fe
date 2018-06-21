@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="">
+	<table border="1">
+	<tr>
+		<td>
+		UserName : <input type="text" name="user">
+		</td>
+		</tr>
+		<tr>
+		<td> 
+		Password   :	<input type="text" name="passkey">
+		</td>	
+	</tr>
+	</table>
+	</form>
+</body>
+</html>

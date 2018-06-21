@@ -1,0 +1,62 @@
+package com.bridgelabz;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class LoginValidationJDBC {
+	    public static void main(String[] args)
+	    {
+	        PreparedStatement pstmt = null;
+	        Connection con = null;
+	        ResultSet rs = null;
+	        String qry = "select * from gmailAccount.accholder where uname=? and password=?";
+	        System.out.println("enter username");
+	        Scanner sc=new Scanner(System.in);
+	        String uname = sc.next();
+	        System.out.println("enter password");
+	        String pwd = sc.next()
+	        try {
+	            Class.forName("com.mysql.jdbc.Driver");
+	            con = DriverManager.getConnection("jdbc:mysql://localhost:3306?user=root&password=bridgeit");
+	            pstmt = con.prepareStatement(qry);
+	            pstmt.setString(1, uname);
+	            pstmt.setString(2, pwd);
+	            rs = pstmt.executeQuery();
+	            if (rs.next()) {
+	                String name = rs.getString(1);
+	                System.out.println("successfully login to gmail");
+	            } else
+	                System.err.println("invalid username or password");
+	        } catch (ClassNotFoundException | SQLException e) {
+	            e.printStackTrace();
+	        }
+
+	        finally {
+	            if (rs != null) {
+	                try {
+	                    rs.close();
+	                } catch (SQLException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	            if (pstmt != null) {
+	                try {
+	                    pstmt.close();
+	                } catch (SQLException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	            if (con != null) {
+	                try {
+	                    con.close();
+	                } catch (SQLException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        }
+	    }
+
+	}
+}

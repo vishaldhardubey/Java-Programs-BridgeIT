@@ -1,0 +1,72 @@
+package com.bridgelabz;
+
+	import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+	public class BatchProcedurePreparedStatementJDBC {
+		public static void main(String[] args) {
+			
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			PreparedStatement pstmt1=null;
+			ResultSet rs=null;
+			String query="select * from student_info"
+					+ " where regNo=?";
+		    String query1="update student_info set mobileNum = ? where regNo=?";
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Student_Info?user=root&password=root");
+				pstmt=con.prepareStatement(query);
+				pstmt1=con.prepareStatement(query1);
+				pstmt.addBatch(query);
+				pstmt.addBatch(query1);
+				
+				pstmt=con.prepareStatement(query);
+				Scanner sc=new Scanner(System.in);
+				int regNo=sc.nextInt();
+				pstmt.setInt(1, regNo);
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					int regNum=rs.getInt("regNo");
+					String fName=rs.getString("FirstName");
+					String lName=rs.getString("LastName");
+					String email=rs.getString("email");
+					String mobNo=rs.getString("mobileNum");
+				}
+				int array[]=pstmt.executeBatch();//n number of queries --> n number of batches... NOT A GOOD PRACTICE
+				for(int x: array)
+				{
+					System.out.println(x);
+				}
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally {
+				if(pstmt!=null)
+				{
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if(con!=null)
+				{
+					try {
+						con.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+}

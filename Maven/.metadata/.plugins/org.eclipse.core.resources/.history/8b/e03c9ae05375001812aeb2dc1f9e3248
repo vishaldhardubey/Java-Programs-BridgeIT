@@ -1,0 +1,16 @@
+package com.bridgelabz.annotations;
+
+class A{
+	public void show() {
+		
+	}
+}
+class B extends A{
+	@Override
+	public void show() {
+		
+	}
+}
+public class AnnotationFirst {
+
+}

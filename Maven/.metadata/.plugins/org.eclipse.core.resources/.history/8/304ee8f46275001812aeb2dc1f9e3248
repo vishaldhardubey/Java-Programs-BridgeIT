@@ -1,0 +1,54 @@
+package com.bridgelabz;
+
+	import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+	public class BatchProcedurePreparedStatementJDBC {
+		public static void main(String[] args) {
+			
+			Connection con=null;
+			PreparedStatement pst=null;
+			PreparedStatement pst1=null;
+			String query="insert into student_info values(?,?,?,?,?)";
+			 String query1="update student_info set mobileNum = ? where regNo=?";
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Student_Info?user=root&password=root");
+				pst=con.prepareStatement(query);
+				pst1=con.prepareStatement(query1);
+				pst.addBatch(query);
+				pst.addBatch(query1);
+				int array[]=pst.executeBatch();//n number of queries --> n number of batches... NOT A GOOD PRACTICE
+				for(int x: array)
+				{
+					System.out.println(x);
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally {
+				if(pst!=null)
+				{
+					try {
+						pst.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if(con!=null)
+				{
+					try {
+						con.close();
+					} catch (FileNotFoundException | SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+}

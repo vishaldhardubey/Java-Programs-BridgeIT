@@ -1,0 +1,20 @@
+package com.bridgelabz.annotations;
+
+@FunctionalInterface
+interface C{
+	public void show();
+}
+class A{
+	public void show() {
+		
+	}
+}
+class B extends A{
+	@Override
+	public void show() {
+		
+	}
+}
+public class AnnotationFirst {
+
+}

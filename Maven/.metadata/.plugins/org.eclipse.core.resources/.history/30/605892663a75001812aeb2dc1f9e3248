@@ -1,0 +1,18 @@
+package com.bridgelabz;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+
+import com.mysql.jdbc.Statement;
+
+public class BatchProcedureJDBC {
+	public static void main(String[] args) {
+		Connection con=null;
+		Statement statement=null;
+		ResultSet resultSet=null;
+		try {
+			String query1="insert into student_info value (6,'komal','Maurya','komalMaurya@gmail.com',983712391)";
+			String query2="insert into student_info where regNo=6"
+		}
+	}
+}
