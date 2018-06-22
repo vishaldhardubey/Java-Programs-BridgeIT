@@ -12,7 +12,7 @@ public class JDBCConnection {
 		Connection con=null;
 		Statement stmt=null;
 		ResultSet res=null;
-		String sql="select * from Employee";
+		String sql="select * from student_info";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/employee?user=root&password=root");

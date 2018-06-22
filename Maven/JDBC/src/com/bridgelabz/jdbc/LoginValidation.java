@@ -13,7 +13,7 @@ public class LoginValidation {
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 
-		String sql = "select * from logindb.validation v,logindb.admin a where v.username=a.username and a.username=? and a.password=?";
+		String sql = "select * from Student_Info.student_otherinfo v,logindb.admin a where v.username=a.username and a.username=? and a.password=?";
 		Scanner scn = new Scanner(System.in);
 		System.out.println("Enter username: ");
 		String username = scn.next();
