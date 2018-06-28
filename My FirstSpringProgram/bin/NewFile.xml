@@ -50,5 +50,23 @@
 </bean>
 
 
-
+<bean id="student" class="com.bridglebaz.beanscope.StudentBean">
+<property name="studentName" value="Vishal"/>
+<property name="address" value="Vashi"/>
+<property name="phoneNum" value="9873321437"/>
+</bean>
+<!-- <bean id="college" class="com.bridgelabz.beanscope.CollegeBean" scope="singleton">
+	<property name="regNo" value="90876"/>
+	<property name="clgName" value="MITM"/>
+	<property name="place" value="Anjali"/>
+	<property name="College" value="AMIT"/>
+	<property name="StudentBean" ref="student"></property>
+	</bean> -->
+<bean id="college" class="com.bridglebaz.beanscope.CollegeBean" scope="prototype">
+<property name="registrationNo" value="90876"/>
+<property name="clgName" value="MITM"/>
+<property name="place" value="Anjali"/>
+<property name="university" value="AIMT"/>
+<property name="StudentBean" ref="student"/>
+</bean>
 </beans>
