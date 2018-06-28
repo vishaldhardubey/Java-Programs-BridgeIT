@@ -1,16 +1,13 @@
-package com.bridgelabz.spring;
+package com.bridgelabz.annotationrequired;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class Driver {
-
+public class StudentTestClass {
 	public static void main(String[] args) {
 		ApplicationContext context=new ClassPathXmlApplicationContext("Vehicalfeatures.xml");
-		Vehical obj=context.getBean("car", Car.class);
-		Vehical obj1=context.getBean("car", Car.class);
-		obj.speed();
-		obj.brand();
+		Student std=(Student)context.getBean("student");
+		System.out.println(std.getsId());
+		System.out.println(std.getName());
 	}
-
 }
