@@ -1,0 +1,5 @@
+package com.bridglebaz.beanscope;
+
+public class StudentBean {
+
+}
