@@ -15,7 +15,7 @@ import com.bridgelabz.service.DoctorService;
 import com.bridgelabz.utility.Utility;
 
 public class DoctorServiceImplementation implements DoctorService{
-	static final String FILE_NAME="/home/administrator/Funtional-Program/Functional-Program/Clinique Management/src/com/bridgelabz/files/Doctor.json";
+	static final String FILE_NAME="/home/administrator/Funtional-Program/Clinique Management/src/com/bridgelabz/files/Doctor.json";
 	DoctorArrayList docList=new DoctorArrayList();
 	
 	

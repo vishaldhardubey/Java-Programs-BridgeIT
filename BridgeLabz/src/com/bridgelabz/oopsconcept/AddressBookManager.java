@@ -19,7 +19,7 @@ import org.json.simple.parser.ParseException;
 import com.bridgelabz.utility.Utility;
 
 public class AddressBookManager {
-	ArrayList<String> book=new ArrayList<>();
+	static ArrayList<String> book=new ArrayList<>();
 	String fileName="";
 	ObjectMapper mapper=new ObjectMapper();
 	
@@ -80,7 +80,6 @@ public class AddressBookManager {
 			System.err.println("Invalid Input");
 			break;
 		}
-		
 	}
 
 	/**
@@ -100,10 +99,12 @@ public class AddressBookManager {
 				System.out.println(array.get(i));
 			}
 		}
-		else {
+		else 
+		{
 			System.out.println("File Doesn't Exists");
 		}
 	}
+	
 	/**
 	 * Function is to close Already opened file
 	 * @param fileName1

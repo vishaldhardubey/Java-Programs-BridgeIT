@@ -4,5 +4,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="/home/administrator/Downloads/jackson-all-1.9.0.jar"/>
 	<classpathentry kind="lib" path="/home/administrator/Downloads/json-simple-1.1.jar" sourcepath="/home/administrator/Downloads/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/administrator/Downloads/commons-dbcp-1.4-sources.jar.zip"/>
+	<classpathentry kind="lib" path="/home/administrator/Downloads/mysql-connector.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

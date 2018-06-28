@@ -11,6 +11,9 @@ import java.util.Scanner;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.bridgelabz.oopsconcept.AddressBookJDBC;
+import com.bridgelabz.oopsconcept.AddressBookJSON;
+
 public class Utility {
     /**
     * Scanner Object to get UserInput.
@@ -932,4 +935,23 @@ public class Utility {
 			}
 		return sum;
    }     
+    	
+    	static AddressBookJSON addressBookJSON=new AddressBookJSON();
+        static AddressBookJDBC addressBookJDBC=new AddressBookJDBC();
+        public static void saveJsonOrJdbc(JSONArray jsonArray,int key) {
+        	switch (key) {
+			    case 1:
+			    	addressBookJSON.doSave(jsonArray);
+			    	System.out.println("Data has been saved in JSON");
+			    	break;
+			    case 2:
+			    	addressBookJDBC.doSave(jsonArray);
+			    	System.out.println("Data has been saved in JDBC");
+			    	break;
+			    default:
+			    	System.out.println("Invalid Input!! Try Again");
+			    	
+			    break;
+		    }
+        }
 }
