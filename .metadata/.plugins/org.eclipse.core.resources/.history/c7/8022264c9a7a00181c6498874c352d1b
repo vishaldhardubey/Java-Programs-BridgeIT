@@ -1,0 +1,6 @@
+package com.bridglebaz.Annotation;
+
+public class Company {
+	private String employee;
+	private int eid;
+}
