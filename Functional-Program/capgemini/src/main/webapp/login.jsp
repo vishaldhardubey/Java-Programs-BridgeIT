@@ -12,7 +12,7 @@
 <form action="LoginServlet" method="post">
 		<table>
 			<tr>
-			<td>Email ID : </td><td><input type="email" name="username"></td> 
+			<td>Email ID : </td><td><input type="email" name="email"></td> 
 			</tr>
 			<tr>
 			<td>Password : </td><td><input type="password" name="passkey"></td> 

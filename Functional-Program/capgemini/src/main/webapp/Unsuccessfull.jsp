@@ -1,4 +1,4 @@
-    <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1"%>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <html>
@@ -8,7 +8,10 @@
     </head>
     <body>
     
- <%--    <%
+    <h1 fontcolor="Red">User Already Exists</h1>
+    <h3> Please try with the different Email ID</h3>
+    <%-- 
+    <%
     	if((session.getAttribute("username")==null)||(session.getAttribute("password")==null)){
     		response.sendRedirect("login.jsp");
     	}
@@ -24,15 +27,15 @@
     				</tr>
     				<tr>
     					<td>Contact No</td>
-    					<td><input type="text" name="contact" maxlength="10" title="only 10 digit" /></td>
+    					<td><input type="text" name="contact" /></td>
     				</tr>
     				<tr>
     					<td>Email ID</td>
-    					<td><input type="email" name="email" title="abc@gmail.com"/></td>
+    					<td><input type="email" name="email" /></td>
     				</tr>
     					<tr>
     					<td>Password</td>
-    					<td><input type="password" name="password" placeholder="******" pattern="((?=.*\d)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*]).{6,20})" title="must contain atleast 1-UpperCase,1-LowerCase,1-specialCharacter And 1-Digit"/></td>
+    					<td><input type="password" name="password" /></td>
     				</tr>
     				</table>
     			<input type="submit" value="Submit" /></form>

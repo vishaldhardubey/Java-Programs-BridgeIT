@@ -40,7 +40,7 @@ public class RegistrationServlet extends HttpServlet{
 			resp.sendRedirect("Successfull.jsp");
 		}
 		catch(Exception e) {
-			System.out.println("Invalid Credentials");
+			e.printStackTrace();
 		}
 	}
 }

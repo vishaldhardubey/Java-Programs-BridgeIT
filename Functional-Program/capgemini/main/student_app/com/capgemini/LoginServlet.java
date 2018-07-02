@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 		Connection con=null;
 		PreparedStatement pst = null;
 		ResultSet set=null;
-		String email = req.getParameter("username");
+		String email = req.getParameter("email");
 		System.out.println(email);
 		String password = req.getParameter("passkey");
 		System.out.println(password);
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 			String dbUrl="jdbc:mysql://localhost:3306/Student_Info?user=root&password=root";
 			con=DriverManager.getConnection(dbUrl);
 			
-			String query1 = "select * from studentInfo where email=?";
+			String query1 = "select * from studentInfo where email=? and password=?";
 			System.out.println(query1);
 			pst = con.prepareStatement(query1);
 			
@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 		
 			if (set.next()) {
 				System.out.println("Getting Values");
-				HttpSession session=req.getSession();
+				HttpSession session=req.getSession(true);
 				session.setAttribute("username", email);
 				session.setAttribute("password", password);	
 
@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 				
 			} else {
 				out.print("<html><body><h1>Sorry! Error in login credentials</h1></body></html>");
-				req.getRequestDispatcher("Login.jsp").forward(req, resp);
+				//resp.sendRedirect("PreLoginServlet");
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
