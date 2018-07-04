@@ -43,6 +43,7 @@ public class FetchDataServlet extends HttpServlet{
 			pstmt.setString(1, name);
 			pstmt.setString(2, password);
 			set=pstmt.executeQuery();
+	        
 			while(set.next()) {
 				session.setAttribute("serialNum", set.getInt("serialNumber"));
 				session.setAttribute("name", set.getString("Name"));
@@ -54,6 +55,7 @@ public class FetchDataServlet extends HttpServlet{
 				RequestDispatcher dispatch=req.getRequestDispatcher("DisplayData.jsp");
 				dispatch.forward(req, resp);
 			}
+		
 		}
 		catch(Exception e) {
 			e.printStackTrace();
