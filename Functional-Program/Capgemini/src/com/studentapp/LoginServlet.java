@@ -65,8 +65,10 @@ public class LoginServlet extends HttpServlet {
 				resp.sendRedirect("FetchData");
 				
 			} else {
-				out.print("<html><body><h1>Sorry! Error in login credentials</h1></body></html>");
-				//resp.sendRedirect("PreLoginServlet");
+				//out.print("<html><body><h1>Sorry! Error in login credentials</h1></body></html>");
+				System.out.println("Invalid Password");
+				RequestDispatcher dispatcher2=req.getRequestDispatcher("login.jsp");
+				dispatcher2.include(req, resp);
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();

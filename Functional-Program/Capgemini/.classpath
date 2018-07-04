@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="/home/administrator/Desktop/activation-1.1.jar"/>
 	<classpathentry kind="lib" path="/home/administrator/Desktop/javax.mail-1.6.1.jar"/>
 	<classpathentry kind="lib" path="/home/administrator/Desktop/javax.mail-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/administrator/Downloads/junit-4.12.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
